@@ -354,4 +354,3 @@ for filename in os.listdir('./meta'):
                                         
 print(ip,il,Is,ig,cp,cl,cs,cg,ep,el,es,eg,hp,hl,hs,hg)
 np.save(subset_dir + 'image.labels', np.array(labels))
-
