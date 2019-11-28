@@ -1,13 +1,15 @@
-Learn more or give us feedback
 from PIL import Image
 import os
 directories = []
 class_names = []
-for filename in os.listdir("datasets\\mydataset\\"):
-	path = os.path.join("datasets\\mydataset\\",filename)
-	print(path)
+for filename in os.listdir("subset_images2"):
+	path = os.path.join("subset_images2",filename)
+	#print(path)
 	foo = Image.open(path)
-	foo = foo.resize((256,256),Image.ANTIALIAS)
+	if foo.mode != 'RGB':
+		foo = foo.convert('RGB')
+	foo = foo.resize((512,512),Image.ANTIALIAS)
 
-	save_path = path.split("\\")[-1]
+	new_path = "subset_images_resized"
+	save_path = os.path.join(new_path,os.path.basename(path))
 	foo.save(save_path,quality=95)
