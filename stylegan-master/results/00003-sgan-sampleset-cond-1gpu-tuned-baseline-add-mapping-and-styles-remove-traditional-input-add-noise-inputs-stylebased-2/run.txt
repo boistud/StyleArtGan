@@ -1,3 +1,0 @@
-{   'host_name': 'localhost',
-    'start_time': '2019-11-10 12:02:30.928795',
-    'task_name': 'joshu-00003-sgan-sampleset-cond-1gpu-tuned-baseline-add-mapping-and-styles-remove-traditional-input-add-noise-inputs-stylebased-2'}
