@@ -2,7 +2,6 @@ import json
 import os
 import numpy as np
 from shutil import copyfile
-
 #metadata_to_idx = {'impressionism': 0, 'pop art': 1, 'portrait': 2, 'landscape': 3}
 
 subset_dir = 'subset_images2/'
