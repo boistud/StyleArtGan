@@ -161,7 +161,7 @@ for filename in os.listdir('./meta'):
                                 
                                 if os.path.isfile(image_path):
                                         
-                                        labels.append([1,0,0,0,0,0,0,0,1])
+                                        labels.append([0,1,0,0,0,0,0,0,1])
                                         cg += 1
                                         
                                         copyfile(image_path, subset_dir + str(artworkID) + '.jpg')
@@ -223,7 +223,7 @@ for filename in os.listdir('./meta'):
                                 
                                 if os.path.isfile(image_path):
                                         
-                                        labels.append([1,0,0,0,0,0,0,0,1])
+                                        labels.append([0,0,1,0,0,0,0,0,1])
                                         eg += 1
                                         
                                         copyfile(image_path, subset_dir + str(artworkID) + '.jpg')
@@ -337,7 +337,7 @@ for filename in os.listdir('./meta'):
                                         
                                         copyfile(image_path, subset_dir + str(artworkID) + '.jpg')
 
-                        elif hg < max_number and artwork['genre'] == 'sculpture':
+                        elif hg < max_number and artwork['genre'] == 'genre painting':
                                 
                                 artist = artwork['artistUrl']
                                 year = artwork['yearAsString']
@@ -347,10 +347,11 @@ for filename in os.listdir('./meta'):
                                 
                                 if os.path.isfile(image_path):
                                         
-                                        labels.append([0,0,0,0,0,0,0,0,1])
+                                        labels.append([0,0,0,0,1,0,0,0,1])
                                         hg += 1
                                         
                                         copyfile(image_path, subset_dir + str(artworkID) + '.jpg')
                                         
 print(ip,il,Is,ig,cp,cl,cs,cg,ep,el,es,eg,hp,hl,hs,hg)
 np.save(subset_dir + 'image.labels', np.array(labels))
+
