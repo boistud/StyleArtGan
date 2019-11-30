@@ -9,4 +9,4 @@ corvett = Converter(image_resolution=(512,512),file='subset_images2')
 corvett.convert()
 
 # load images from the saved folder and convert to tfrecords
-dt.create_from_images('..//..//StyleArtGan-master//stylegan-master//datasets//subset_images_tfr', '..//..//wikiart-master//wikiart-saved//subset_images_resized', True)
+dt.create_from_images('datasets//subset_images_tfr', '..//..//wikiart-master//wikiart-saved//subset_images_resized', True)
