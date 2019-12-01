@@ -8,8 +8,7 @@ import numpy as np
 import PIL.Image
 import dnnlib.tflib as tflib
 import math
-import matplotlib.pyplot as plt
-
+from matplotlib import pyplot as plt
 # generates image(s) with every style in styles and every genre in genres and outputs them to the output file
 # if generating multiple images, they are concatenated into one large image
 def generate_image(pickle_file, styles, genres, output_file, n_images=1):
