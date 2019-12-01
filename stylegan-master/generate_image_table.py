@@ -150,7 +150,7 @@ def generate_style_mix(pickle_file, fine_style, fine_genre, coarse_style, coarse
 
 		mixed_dlatents.append(coarse_dlatents[i].copy())
 
-		mixed_dlatents[(len(mix_dlatents) / 2):] = fine_dlatents[i][(len(mix_dlatents) / 2):]
+		mixed_dlatents[i][int(len(mixed_dlatents[i]) / 2):] = fine_dlatents[i][int(len(mixed_dlatents[i]) / 2):]
 
 	mixed_images = Gs.components.synthesis.run(mixed_dlatents, truncation_psi=0.7, randomize_noise=True, output_transform=fmt)
 
