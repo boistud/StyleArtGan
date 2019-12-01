@@ -8,7 +8,10 @@ import numpy as np
 import PIL.Image
 import dnnlib.tflib as tflib
 import math
-from matplotlib import pyplot as plt
+import matplotlib
+matplotlib.use('agg')
+import matplotlib.pyplot as plt
+
 # generates image(s) with every style in styles and every genre in genres and outputs them to the output file
 # if generating multiple images, they are concatenated into one large image
 def generate_image(pickle_file, styles, genres, output_file, n_images=1):
@@ -203,10 +206,10 @@ def generate_image_grid(pickle_file, output_file, styles=None, genres=None):
 
 	for i in range(len(all_genres)):
 
-		axarr[0,i].set_title(all_styles[i])
+		axarr[0,i].set_title(all_genres[i])
 
 	f.tight_layout()
-	plt.show()
+	#plt.savefig(output_file, bbox_inches='tight', pad_inches=0)
 
 	# save the image
 	PIL.Image.fromarray(grid, 'RGB').save(output_file)
