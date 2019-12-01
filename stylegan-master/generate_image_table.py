@@ -101,8 +101,8 @@ def generate_style_mix(pickle_file, fine_style, fine_genre, coarse_style, coarse
 	rnd = np.random.RandomState(seed * 2)
 	coarse_latents = rnd.randn(n_images, Gs.input_shape[1])
 
-	fine_label = [0] * max_index
-	coarse_label = [0] * max_index
+	fine_label = [0] * (max_index + 1)
+	coarse_label = [0] * (max_index + 1)
 
 	if fine_style.lower() not in styles_to_idx:
 
@@ -137,12 +137,12 @@ def generate_style_mix(pickle_file, fine_style, fine_genre, coarse_style, coarse
 	coarse_labels = [coarse_label] * n_images
 
 	fine_dlatents = Gs.components.mapping.run(fine_latents, fine_labels)
-	coarse_dlatents = Gs.components.mapping.run(coarse_latents, fine_latents)
+	coarse_dlatents = Gs.components.mapping.run(coarse_latents, coarse_labels)
 
 	fmt = dict(func=dnnlib.tflib.convert_images_to_uint8, nchw_to_nhwc=True)
 
-	fine_images = Gs.components.synthesis.run(fine_dlatents, truncation_psi=0.7, randomize_noise=True, output_transform=fmt, **synthesis_kwargs)
-	coarse_images = Gs.components.synthesis.run(coarse_dlatents, truncation_psi=0.7, randomize_noise=True, output_transform=fmt, **synthesis_kwargs)
+	fine_images = Gs.components.synthesis.run(fine_dlatents, truncation_psi=0.7, randomize_noise=True, output_transform=fmt)
+	coarse_images = Gs.components.synthesis.run(coarse_dlatents, truncation_psi=0.7, randomize_noise=True, output_transform=fmt)
 
 	mixed_dlatents = []
 
@@ -152,7 +152,7 @@ def generate_style_mix(pickle_file, fine_style, fine_genre, coarse_style, coarse
 
 		mixed_dlatents[(len(mix_dlatents) / 2):] = fine_dlatents[i][(len(mix_dlatents) / 2):]
 
-	mixed_images = Gs.components.synthesis.run(mixed_dlatents, truncation_psi=0.7, randomize_noise=True, output_transform=fmt, **synthesis_kwargs)
+	mixed_images = Gs.components.synthesis.run(mixed_dlatents, truncation_psi=0.7, randomize_noise=True, output_transform=fmt)
 
 	figure = np.concatenate(([np.concatenate((coarse_images), axis=1), np.concatenate((mixed_images), axis=1), np.concatenate((fine_images), axis=1)]), axis=0)
 
@@ -170,7 +170,7 @@ def generate_image_grid(pickle_file, output_file, styles=None, genres=None, seed
 	side_length = int(math.sqrt(images_per_combo))
 
 	# an ordered list of the styles to put into the grid
-	all_styles = ['impressionism', 'cubism', 'expressionism', 'surrealism']
+	all_styles = ['impressionism', 'cubism', 'expressionism', 'surrealism', 'high renaissance']
 	all_genres = ['portrait', 'landscape', 'sculpture', 'genre painting']
 
 	styles_to_idx = {'impressionism': 0, 'cubism': 1, 'analytical cubism': 1, 'expressionism': 2, 'symbolism': 2, 'surrealism': 3, 'high renaissance': 4}
@@ -215,7 +215,7 @@ def generate_image_grid(pickle_file, output_file, styles=None, genres=None, seed
 
 		all_genres = genres
 
-	f, axarr = plt.subplots(len(all_styles), len(all_genres))
+	#f, axarr = plt.subplots(len(all_styles), len(all_genres))
 
 	# this will be the final image
 	grid = None
@@ -252,9 +252,9 @@ def generate_image_grid(pickle_file, output_file, styles=None, genres=None, seed
 
 				output = np.concatenate((output, np.concatenate((images[i * side_length: (i + 1) * side_length]), axis=1)), axis=0)
 
-			axarr[row_number, column_number].imshow(output)
+			#axarr[row_number, column_number].imshow(output)
 
-			axarr[row_number, column_number].axis('off')
+			#axarr[row_number, column_number].axis('off')
 
 			# add this output to the row
 			if row is None:
@@ -278,15 +278,15 @@ def generate_image_grid(pickle_file, output_file, styles=None, genres=None, seed
 
 		row_number += 1
 
-	for i in range(len(all_styles)):
+	#for i in range(len(all_styles)):
 
-		axarr[i,0].set_ylabel(all_styles[i])
+		#axarr[i,0].set_ylabel(all_styles[i])
 
-	for i in range(len(all_genres)):
+	#for i in range(len(all_genres)):
 
-		axarr[0,i].set_title(all_genres[i])
+		#axarr[0,i].set_title(all_genres[i])
 
-	f.tight_layout()
+	#f.tight_layout()
 	#plt.savefig(output_file, bbox_inches='tight', pad_inches=0)
 
 	# save the image
