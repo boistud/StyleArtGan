@@ -74,7 +74,7 @@ def generate_image(pickle_file, styles, genres, output_file, n_images=1):
 	PIL.Image.fromarray(output, 'RGB').save(output_file)
 
 # generates images for every style/genre combo and saves them all as one tiled image where each row is a style and each column is a genre
-def generate_image_grid(pickle_file, styles=None, genres=None, output_file):
+def generate_image_grid(pickle_file, output_file, styles=None, genres=None):
 
 	tflib.init_tf()
 
@@ -179,3 +179,5 @@ def generate_image_grid(pickle_file, styles=None, genres=None, output_file):
 
 		# save the image
 		PIL.Image.fromarray(grid, 'RGB').save(output_file)
+
+generate_image_grid('results/00015-sgan-sampleset-cond-1gpu-tuned-baseline-add-mapping-and-styles-remove-traditional-input-add-noise-inputs-stylebased-2/network-snapshot-006126.pkl', output_file='grid.png')
