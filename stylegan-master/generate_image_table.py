@@ -7,6 +7,8 @@ import dnnlib
 import numpy as np
 import PIL.Image
 import dnnlib.tflib as tflib
+import math
+import matplotlib.pyplot as plt
 
 # generates image(s) with every style in styles and every genre in genres and outputs them to the output file
 # if generating multiple images, they are concatenated into one large image
@@ -84,8 +86,11 @@ def generate_image_grid(pickle_file, output_file, styles=None, genres=None):
 	# must be a perfect square
 	images_per_combo = 4
 
+	# for formatting the grid and the images in it
+	side_length = int(math.sqrt(images_per_combo))
+
 	# an ordered list of the styles to put into the grid
-	all_styles = ['impressionism', 'cubism', 'analytical cubism', 'expressionism', 'symbolism', 'surrealism', 'high renaissance']
+	all_styles = ['impressionism', 'cubism', 'expressionism', 'surrealism']
 	all_genres = ['portrait', 'landscape', 'sculpture', 'genre painting']
 
 	styles_to_idx = {'impressionism': 0, 'cubism': 1, 'analytical cubism': 1, 'expressionism': 2, 'symbolism': 2, 'surrealism': 3, 'high renaissance': 4}
@@ -130,13 +135,19 @@ def generate_image_grid(pickle_file, output_file, styles=None, genres=None):
 
 		all_genres = genres
 
+	f, axarr = plt.subplots(len(all_styles), len(all_genres))
+
 	# this will be the final image
 	grid = None
+
+	row_number = 0
 
 	for style in all_styles:
 
 		# this will be all the images for this style concatenated together
 		row = None
+
+		column_number = 0
 
 		for genre in all_genres:
 
@@ -153,9 +164,6 @@ def generate_image_grid(pickle_file, output_file, styles=None, genres=None):
 			# generate the images
 			images = Gs.run(latents, labels, truncation_psi=0.7, randomize_noise=True, output_transform=fmt)
 
-			# format the grid and the images in it
-			side_length = np.sqrt(images_per_combo)
-
 			# make the first row of this output
 			output = np.concatenate((images[:side_length]), axis=1)
 
@@ -163,6 +171,10 @@ def generate_image_grid(pickle_file, output_file, styles=None, genres=None):
 			for i in range(1, side_length):
 
 				output = np.concatenate((output, np.concatenate((images[i * side_length: (i + 1) * side_length]), axis=1)), axis=0)
+
+			axarr[row_number, column_number].imshow(output)
+
+			axarr[row_number, column_number].axis('off')
 
 			# add this output to the row
 			if row is None:
@@ -173,6 +185,8 @@ def generate_image_grid(pickle_file, output_file, styles=None, genres=None):
 
 				row = np.concatenate((row, output), axis=1)
 
+			column_number += 1
+
 		# add this row to the grid
 		if grid is None:
 
@@ -182,7 +196,20 @@ def generate_image_grid(pickle_file, output_file, styles=None, genres=None):
 
 			grid = np.concatenate((grid, row), axis=0)
 
+		row_number += 1
+
+	for i in range(len(all_styles)):
+
+		axarr[i,0].set_ylabel(all_styles[i])
+
+	for i in range(len(all_genres)):
+
+		axarr[0,i].set_title(all_styles[i])
+
+	f.tight_layout()
+	plt.show()
+
 	# save the image
 	PIL.Image.fromarray(grid, 'RGB').save(output_file)
 
-generate_image_grid('results/00015-sgan-sampleset-cond-1gpu-tuned-baseline-add-mapping-and-styles-remove-traditional-input-add-noise-inputs-stylebased-2/network-snapshot-006126.pkl', output_file='grid.png')
+generate_image_grid('results/00015-sgan-sampleset-cond-1gpu-tuned-baseline-add-mapping-and-styles-remove-traditional-input-add-noise-inputs-stylebased-2/network-snapshot-006126.pkl', output_file='grid.png', genres=['portrait', 'landscape'])
