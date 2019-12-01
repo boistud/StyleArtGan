@@ -14,7 +14,7 @@ import matplotlib.pyplot as plt
 
 # generates image(s) with every style in styles and every genre in genres and outputs them to the output file
 # if generating multiple images, they are concatenated into one large image
-def generate_image(pickle_file, styles, genres, output_file, n_images=1):
+def generate_image(pickle_file, styles, genres, output_file, n_images=1, seed=None):
 
 	tflib.init_tf()
 
@@ -31,7 +31,7 @@ def generate_image(pickle_file, styles, genres, output_file, n_images=1):
 	_G, _D, Gs = pickle.load(sio)
 
 	# generate the random input vectors
-	rnd = np.random.RandomState(5)
+	rnd = np.random.RandomState(seed)
 	latents = rnd.randn(n_images, Gs.input_shape[1])
 
 	# initialize the label vector
@@ -80,8 +80,86 @@ def generate_image(pickle_file, styles, genres, output_file, n_images=1):
 	# save the image to file
 	PIL.Image.fromarray(output, 'RGB').save(output_file)
 
+def generate_style_mix(pickle_file, fine_style, fine_genre, coarse_style, coarse_genre, output_file, n_images=1, seed=None):
+
+	tflib.init_tf()
+
+	styles_to_idx = {'impressionism': 0, 'cubism': 1, 'analytical cubism': 1, 'expressionism': 2, 'symbolism': 2, 'surrealism': 3, 'high renaissance': 4}
+	genres_to_idx = {'portrait': 5, 'landscape': 6, 'sculpture': 7, 'genre painting': 8}
+
+	max_index = 8
+
+	# load the model
+	f = open(pickle_file,"rb")
+	bin_data = f.read()
+	sio = BytesIO(bin_data)
+	_G, _D, Gs = pickle.load(sio)
+
+	# generate the random input vectors
+	rnd = np.random.RandomState(seed)
+	fine_latents = rnd.randn(n_images, Gs.input_shape[1])
+	rnd = np.random.RandomState(seed * 2)
+	coarse_latents = rnd.randn(n_images, Gs.input_shape[1])
+
+	fine_label = [0] * max_index
+	coarse_label = [0] * max_index
+
+	if fine_style.lower() not in styles_to_idx:
+
+		print('Error: \'' + str(fine_style) + '\' not a valid style')
+
+		return
+
+	if fine_genre.lower() not in genres_to_idx:
+
+		print('Error: \'' + str(fine_genre) + '\' not a valid genre')
+
+		return
+
+	if coarse_style.lower() not in styles_to_idx:
+
+		print('Error: \'' + str(coarse_style) + '\' not a valid style')
+
+		return
+
+	if coarse_genre.lower() not in genres_to_idx:
+
+		print('Error: \'' + str(coarse_genre) + '\' not a valid genre')
+
+		return
+
+	fine_label[styles_to_idx[fine_style.lower()]] = 1
+	fine_label[genres_to_idx[fine_genre.lower()]] = 1
+	coarse_label[styles_to_idx[coarse_style.lower()]] = 1
+	coarse_label[genres_to_idx[coarse_genre.lower()]] = 1
+
+	fine_labels = [fine_label] * n_images
+	coarse_labels = [coarse_label] * n_images
+
+	fine_dlatents = Gs.components.mapping.run(fine_latents, fine_labels)
+	coarse_dlatents = Gs.components.mapping.run(coarse_latents, fine_latents)
+
+	fmt = dict(func=dnnlib.tflib.convert_images_to_uint8, nchw_to_nhwc=True)
+
+	fine_images = Gs.components.synthesis.run(fine_dlatents, truncation_psi=0.7, randomize_noise=True, output_transform=fmt, **synthesis_kwargs)
+	coarse_images = Gs.components.synthesis.run(coarse_dlatents, truncation_psi=0.7, randomize_noise=True, output_transform=fmt, **synthesis_kwargs)
+
+	mixed_dlatents = []
+
+	for i in range(len(fine_images)):
+
+		mixed_dlatents.append(coarse_dlatents[i].copy())
+
+		mixed_dlatents[(len(mix_dlatents) / 2):] = fine_dlatents[i][(len(mix_dlatents) / 2):]
+
+	mixed_images = Gs.components.synthesis.run(mixed_dlatents, truncation_psi=0.7, randomize_noise=True, output_transform=fmt, **synthesis_kwargs)
+
+	figure = np.concatenate(([np.concatenate((coarse_images), axis=1), np.concatenate((mixed_images), axis=1), np.concatenate((fine_images), axis=1)]), axis=0)
+
+	PIL.Image.fromarray(figure, 'RGB').save(output_file)
+
 # generates images for every style/genre combo and saves them all as one tiled image where each row is a style and each column is a genre
-def generate_image_grid(pickle_file, output_file, styles=None, genres=None):
+def generate_image_grid(pickle_file, output_file, styles=None, genres=None, seed=None):
 
 	tflib.init_tf()
 
@@ -106,7 +184,7 @@ def generate_image_grid(pickle_file, output_file, styles=None, genres=None):
 	_G, _D, Gs = pickle.load(sio)
 
 	# generate the random input vectors
-	rnd = np.random.RandomState(5)
+	rnd = np.random.RandomState(seed)
 	latents = rnd.randn(images_per_combo, Gs.input_shape[1])
 
 	fmt = dict(func=dnnlib.tflib.convert_images_to_uint8, nchw_to_nhwc=True)
@@ -214,4 +292,6 @@ def generate_image_grid(pickle_file, output_file, styles=None, genres=None):
 	# save the image
 	PIL.Image.fromarray(grid, 'RGB').save(output_file)
 
-generate_image_grid('results/00015-sgan-sampleset-cond-1gpu-tuned-baseline-add-mapping-and-styles-remove-traditional-input-add-noise-inputs-stylebased-2/network-snapshot-006126.pkl', output_file='grid.png', genres=['portrait', 'landscape'])
+#generate_image_grid('results/00015-sgan-sampleset-cond-1gpu-tuned-baseline-add-mapping-and-styles-remove-traditional-input-add-noise-inputs-stylebased-2/network-snapshot-006126.pkl', output_file='grid.png', genres=['portrait', 'landscape'])
+
+generate_style_mix('results/00015-sgan-sampleset-cond-1gpu-tuned-baseline-add-mapping-and-styles-remove-traditional-input-add-noise-inputs-stylebased-2/network-snapshot-006126.pkl', fine_style='impressionism', fine_genre='landscape', coarse_style='cubism', coarse_genre='portrait', output_file='mixing.png', n_images=8, seed=100)
