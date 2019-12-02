@@ -22,6 +22,6 @@ The paintings are converted to latenet space using TF-Records.
 
 # Results
 
+                              Painting: Generated style mixing
 ![Style Mixing](https://github.com/boistud/StyleArtGan/blob/master/Results/mixing_edited.png)
-Painting: Generated style mixing
 
