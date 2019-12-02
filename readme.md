@@ -7,10 +7,19 @@ This git page is devoted to walk you through how our team, motivated by the orig
 
 The dataset is obtained from the Wiki-Art https://www.wikiart.org/ containing art work based on styles, genres, and media. 
 
-# System requirements
+# System Requirements
 
 * At least one NVIDIA GPU with at least 11GB of DRAM. We trained our model with one p100 GPU provided by the Google Cloud Platform
 * Python 3.6 installation 
 * TensorFlow-gpu 1.11.0 
 * CUDA toolkit corresponding the Tensorflow-gpu
 
+# Datasets for Training
+
+The paintings are converted to latenet space using TF-Records. 
+
+# Evaluations
+
+# Results
+
+![Image description](link-to-image)
