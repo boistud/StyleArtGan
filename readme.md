@@ -38,9 +38,9 @@ A random sample of images for specific styles and genres used training was conve
 
 # Results
 
-Painting: Generated Grid for each style
+* Painting: Generated Grid for each style
 ![Grid](https://github.com/boistud/StyleArtGan/blob/master/Results/grid_edited.png)
 
-Painting: Generated style mixing
+* Painting: Generated style mixing
 ![Style Mixing](https://github.com/boistud/StyleArtGan/blob/master/Results/mixing_edited.png)
 
