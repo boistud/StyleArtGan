@@ -5,7 +5,7 @@ This git page is devoted to walk you through how our team, motivated by the orig
 
 # Resources
 
-The dataset is obtained from the Wiki-Art https://www.wikiart.org/ containing art work based on styles, genres, and media. 
+The dataset is obtained from the Wiki-Art https://www.wikiart.org/ containing art work based on styles, genres, and texture. 
 
 # System Requirements
 
@@ -27,7 +27,10 @@ The dataset is obtained from the Wiki-Art https://www.wikiart.org/ containing ar
 
 # Datasets for Training
 
-The paintings are converted to latent space using TF-Records. 
+A random sample of images for specific styles and genres used training was converted to tfrecords along with the labels.npy which contains class labels (styles and genres of each image).
+
+* Styles: Impressionisn, Cubism (Analytical Cubism), Expressionism (Symbolism), Surrealism, High Renaissance
+* Genres: Portrait, Landscape, Sculpture, Genre Painting
 
 # Evaluations
 
