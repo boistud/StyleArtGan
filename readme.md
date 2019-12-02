@@ -22,4 +22,5 @@ The paintings are converted to latenet space using TF-Records.
 
 # Results
 
-![Style Mixing](https://github.com/boistud/StyleArtGan/blob/master/Results/mixing_edited.png "Style Mixing")
+### Style Mixing ###
+![Style Mixing](https://github.com/boistud/StyleArtGan/blob/master/Results/mixing_edited.png)
