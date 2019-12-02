@@ -22,4 +22,4 @@ The paintings are converted to latenet space using TF-Records.
 
 # Results
 
-![Image description](link-to-image)
+![Image description](https://github.com/boistud/StyleArtGan/blob/master/Results/mixing_edited.png)
