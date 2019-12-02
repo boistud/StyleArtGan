@@ -159,11 +159,11 @@ def generate_style_mix(pickle_file, fine_style, fine_genre, coarse_style, coarse
 	# for each pair of images
 	for i in range(len(fine_images)):
 
-		# take the course dlatents
-		mixed_dlatents.append(coarse_dlatents[i].copy())
+		# take the fine dlatents
+		mixed_dlatents.append(fine_dlatents[i].copy())
 
-		# and copy the fine dlatents over the second half
-		mixed_dlatents[i][0][int(len(mixed_dlatents[i][0]) / 2):] = fine_dlatents[i][0][int(len(mixed_dlatents[i][0]) / 2):]
+		# and copy the coarse dlatents over the second half
+		mixed_dlatents[i][0][int(len(mixed_dlatents[i][0]) / 2):] = coarse_dlatents[i][0][int(len(mixed_dlatents[i][0]) / 2):]
 
 	# generate the style-mixed images
 	mixed_images = Gs.components.synthesis.run(np.array(mixed_dlatents), truncation_psi=0.7, randomize_noise=True, output_transform=fmt)
@@ -312,6 +312,6 @@ def generate_image_grid(pickle_file, output_file, styles=None, genres=None, seed
 	# save the image
 	PIL.Image.fromarray(grid, 'RGB').save(output_file)
 
-generate_image_grid('results/00015-sgan-sampleset-cond-1gpu-tuned-baseline-add-mapping-and-styles-remove-traditional-input-add-noise-inputs-stylebased-2/network-snapshot-006126.pkl', output_file='grid.png', genres=['portrait', 'landscape'], seed=5)
+#generate_image_grid('results/00015-sgan-sampleset-cond-1gpu-tuned-baseline-add-mapping-and-styles-remove-traditional-input-add-noise-inputs-stylebased-2/network-snapshot-006126.pkl', output_file='grid.png', genres=['portrait', 'landscape'], seed=5)
 
-generate_style_mix('results/00015-sgan-sampleset-cond-1gpu-tuned-baseline-add-mapping-and-styles-remove-traditional-input-add-noise-inputs-stylebased-2/network-snapshot-006126.pkl', fine_style='impressionism', fine_genre='landscape', coarse_style='cubism', coarse_genre='portrait', output_file='mixing.png', n_images=8, seed=6)
+generate_style_mix('results/00015-sgan-sampleset-cond-1gpu-tuned-baseline-add-mapping-and-styles-remove-traditional-input-add-noise-inputs-stylebased-2/network-snapshot-006126.pkl', fine_style='cubism', fine_genre='portrait', coarse_style='impressionism', coarse_genre='landscape', output_file='mixing.png', n_images=8, seed=6)
