@@ -14,11 +14,17 @@ The dataset is obtained from the Wiki-Art https://www.wikiart.org/ containing ar
 * TensorFlow-gpu 1.11.0 
 * CUDA toolkit corresponding the Tensorflow-gpu
 
+# Files
+
+
+
 # Datasets for Training
 
-The paintings are converted to latenet space using TF-Records. 
+The paintings are converted to latent space using TF-Records. 
 
 # Evaluations
+
+
 
 # Results
 
