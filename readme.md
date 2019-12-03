@@ -21,8 +21,8 @@ The dataset is obtained from the Wiki-Art https://www.wikiart.org/ containing ar
 | [Results](https://github.com/boistud/StyleArtGan/tree/master/Results)| Contains the final report and some of the images used in the paper.
 | [stylegan-master](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master)| primary folder
 | &boxvr;&nbsp; [Datasets](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master/datasets) | dataset path pointed by train.py
-| &boxvr;&nbsp; &boxvr;&nbsp;[subset_images_tfr](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master/datasets/subset_images_tfr) | folder where tfrecords are stored
-| &boxvr;&nbsp; &boxvr;&nbsp; &boxvr;&nbsp;[placeholder.txt](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master/datasets/subset_images_tfr/placeholder.txt) | placeholder since the actual tfrecords are too big
+| &boxv;&nbsp; &boxvr;&nbsp;[subset_images_tfr](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master/datasets/subset_images_tfr) | folder where tfrecords are stored
+| &boxv;&nbsp; &ensp;&ensp; &boxur;&nbsp;;[placeholder.txt](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master/datasets/subset_images_tfr/placeholder.txt) | placeholder since the actual tfrecords are too big
 | &boxv;&nbsp; [dnnlib](https://github.com/alex91121/Style_Art_GAN/tree/master/stylegan-master-clean/dnnlib) | helper functions
 | &boxv;&nbsp; [metrics](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master/metrics) | various metric functions
 | &boxv;&nbsp; [preprocess](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master/preprocess) | preprocess functions
