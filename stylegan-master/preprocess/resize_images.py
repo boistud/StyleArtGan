@@ -7,8 +7,8 @@ class Converter:
 		self.file = file
 		
 	def convert():
-		for filename in os.listdir(file):
-			path = os.path.join(file,filename)
+		for filename in os.listdir(self.file):
+			path = os.path.join(self.file,filename)
 			
 			foo = Image.open(path)
 			if foo.mode != 'RGB':
