@@ -26,8 +26,8 @@ The dataset is obtained from the Wiki-Art https://www.wikiart.org/ containing ar
 | &boxv;&nbsp; [dnnlib](https://github.com/alex91121/Style_Art_GAN/tree/master/stylegan-master-clean/dnnlib) | Helper functions
 | &boxv;&nbsp; [metrics](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master/metrics) | Various metric functions
 | &boxv;&nbsp; [preprocess](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master/preprocess) | Preprocess functions
-| &boxvr;&nbsp; &boxvr;&nbsp; [collect_images.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/preprocess/collect_images.py) | Collect images from wikiart dataset folder
-| &boxvr;&nbsp; &boxur;&nbsp; [resize_images.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/preprocess/resize_images.py) | Resize collected images so that they are compatible with the model architecture
+| &boxv;&nbsp; &boxvr;&nbsp; [collect_images.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/preprocess/collect_images.py) | Collect images from wikiart dataset folder
+| &boxv;&nbsp; &boxur;&nbsp; [resize_images.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/preprocess/resize_images.py) | Resize collected images so that they are compatible with the model architecture
 | &boxv;&nbsp; [training](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master/training) | Folder that contains actual networks and training process
 | &boxv;&nbsp; [config.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/config.py) | Global configuration
 | &boxv;&nbsp; [convert_to_tfr.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/convert_to_tfr.py) | Convert resized iamges to tfrecords
