@@ -29,13 +29,13 @@ The dataset is obtained from the Wiki-Art https://www.wikiart.org/ containing ar
 | &boxvr;&nbsp; &boxvr;&nbsp; [collect_images.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/preprocess/collect_images.py) | collect images from wikiart dataset folder
 | &boxvr;&nbsp; &boxur;&nbsp; [resize_images.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/preprocess/resize_images.py) | resize collected images so that they are compatible with the model architecture
 | &boxv;&nbsp; [training](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master/training) | folder that contains actual networks and training process
-| &boxv;&nbsp [config.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/config.py) | global configuration
-| &boxv;&nbsp [convert_to_tfr.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/convert_to_tfr.py) | convert resized iamges to tfrecords
-| &boxv;&nbsp [dataset_tool.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/dataset_tool.py) | helper functions for dealing with datasets
-| &boxv;&nbsp [evaluate.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/evaluate.py) | evaluate models by loading saved .pkl model and computing FID score
-| &boxv;&nbsp [generate_figures.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/generate_figures.py) | various functions for generating figures of different sorts
-| &boxv;&nbsp [generate_image_table.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/generate_image_table.py) | generate style mixing and grid images by loading the saved .pkl model
-| &boxv;&nbsp [run_metrics.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/run_metrics.py) | helper functions for loading saved models
+| &boxv;&nbsp; [config.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/config.py) | global configuration
+| &boxv;&nbsp; [convert_to_tfr.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/convert_to_tfr.py) | convert resized iamges to tfrecords
+| &boxv;&nbsp; [dataset_tool.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/dataset_tool.py) | helper functions for dealing with datasets
+| &boxv;&nbsp; [evaluate.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/evaluate.py) | evaluate models by loading saved .pkl model and computing FID score
+| &boxv;&nbsp; [generate_figures.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/generate_figures.py) | various functions for generating figures of different sorts
+| &boxv;&nbsp; [generate_image_table.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/generate_image_table.py) | generate style mixing and grid images by loading the saved .pkl model
+| &boxv;&nbsp; [run_metrics.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/run_metrics.py) | helper functions for loading saved models
 | [readme.md](https://github.com/boistud/StyleArtGan/blob/master/readme.md)| readme file
 
 
