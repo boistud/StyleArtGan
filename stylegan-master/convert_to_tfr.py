@@ -5,7 +5,7 @@ import preprocess
 
 
 # resize images and then save them
-corvett = Converter(image_resolution=(512,512),file='subset_images2')
+corvett = resize_images.Converter(image_resolution=(512,512),file='subset_images2')
 corvett.convert()
 
 # load images from the saved folder and convert to tfrecords
