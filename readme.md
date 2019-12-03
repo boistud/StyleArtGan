@@ -19,15 +19,16 @@ The dataset is obtained from the Wiki-Art https://www.wikiart.org/ containing ar
 | Path | Description
 | :--- | :----------
 | [Results](https://github.com/boistud/StyleArtGan/tree/master/Results)| Contains the final report and some of the images used in the paper.
-| [stylegan-master](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master)| primary folder
+| [stylegan-master](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master)| primary directory
 | &boxvr;&nbsp; [Datasets](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master/datasets) | dataset path pointed by train.py
 | &boxv;&nbsp; &boxvr;&nbsp;[subset_images_tfr](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master/datasets/subset_images_tfr) | folder where tfrecords are stored
-| &boxv;&nbsp; &ensp;&ensp; &boxur;&nbsp;;[placeholder.txt](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master/datasets/subset_images_tfr/placeholder.txt) | placeholder since the actual tfrecords are too big
+| &boxv;&nbsp; &ensp;&ensp; &boxur;&nbsp;[placeholder.txt](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master/datasets/subset_images_tfr/placeholder.txt) | placeholder since the actual tfrecords are too big
 | &boxv;&nbsp; [dnnlib](https://github.com/alex91121/Style_Art_GAN/tree/master/stylegan-master-clean/dnnlib) | helper functions
 | &boxv;&nbsp; [metrics](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master/metrics) | various metric functions
 | &boxv;&nbsp; [preprocess](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master/preprocess) | preprocess functions
 | &boxvr;&nbsp; &boxvr;&nbsp; [collect_images.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/preprocess/collect_images.py) | collect images from wikiart dataset folder
-| &boxvr;&nbsp; &boxvr;&nbsp; [resize_images.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/preprocess/resize_images.py) | resize collected images so that they are compatible with the model architecture
+| &boxvr;&nbsp; &boxur;&nbsp; [resize_images.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/preprocess/resize_images.py) | resize collected images so that they are compatible with the model architecture
+| &boxv;&nbsp; [training] (https://github.com/boistud/StyleArtGan/tree/master/stylegan-master/training) | folder that contains actual networks and training process
 | [readme.md]| readme file
 
 
