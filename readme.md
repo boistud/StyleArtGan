@@ -35,7 +35,7 @@ The dataset is obtained from the Wiki-Art https://www.wikiart.org/ containing ar
 | &boxv;&nbsp; [evaluate.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/evaluate.py) | Evaluate models by loading saved .pkl model and computing FID score
 | &boxv;&nbsp; [generate_figures.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/generate_figures.py) | Various functions for generating figures of different sorts
 | &boxv;&nbsp; [generate_image_table.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/generate_image_table.py) | Generate style mixing and grid images by loading the saved .pkl model
-| &boxv;&nbsp; [run_metrics.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/run_metrics.py) | Helper functions for loading saved models
+| &boxuv;&nbsp; [run_metrics.py](https://github.com/boistud/StyleArtGan/blob/master/stylegan-master/run_metrics.py) | Helper functions for loading saved models
 | [readme.md](https://github.com/boistud/StyleArtGan/blob/master/readme.md)| Readme file
 
 
