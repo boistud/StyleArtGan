@@ -18,7 +18,7 @@ The dataset is obtained from the Wiki-Art https://www.wikiart.org/ containing ar
 # Files
 | Path | Description
 | :--- | :----------
-| [Results](https://github.com/boistud/StyleArtGan/tree/master/Results)| Contains some of the images used on git.
+| [Results](https://github.com/boistud/StyleArtGan/tree/master/Results)| Contains all of the images used on final report.
 | [stylegan-master](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master)| Primary directory
 | &boxvr;&nbsp; [Datasets](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master/datasets) | Dataset path pointed by train.py
 | &boxv;&nbsp; &boxur;&nbsp;[subset_images_tfr](https://github.com/boistud/StyleArtGan/tree/master/stylegan-master/datasets/subset_images_tfr) | Folder where tfrecords are stored
